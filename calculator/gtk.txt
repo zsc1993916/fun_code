@@ -1,0 +1,218 @@
+gtk编译命令 gcc hello_dubuntu.c -o hello_dubuntu `pkg-config --cflags --libs gtk+-2.0`   //链接gtk+2.0的库，并编译c语言代码
+
+
+-g -Wall -o cal cal.c -L/usr/lib/python2.7/config -lpython2.7 `pkg-config --cflags --libs gtk+-2.0` 综合编译命令
+
+
+glib中定义了很多数据类型。如gint 基本等同与int，只是glib中包含了很多数据类型处理，数据结构，哈希等库函数
+
+GtkWidget 图形
+
+gtk_init(gint *argc, gchar ***argv )
+所有GTK应用程序都要调用该函数。
+gtk_init()的目的是为了应用程序初始化GDK和GTK+库。如果gtk_init()出现问题，那么应用程序就会退出。
+
+void gtk_main()
+一旦GTK+应用程序调用了gtk_main()，那么GTK+就接管了控制权。gtk_main()函数运行主循环，直到调用gtk_main_quit()函数，gtk_main()才会退出。
+gtk_main()函数的所有实例功能都是一样的，它们都监视同一个与X服务器的连接，都对同样的事件队列起作用。gtk_main()实例用于阻塞、 遮断一个函数的控制流直到满足某些条件。所有的Gtk+程序都用这个技巧使应用程序正在运行时main()函数不能退出去。
+
+void gtk_main_quit()
+gtk_main_quit()会使gtk_main()跳出循环并返回。
+GTK+允许gtk_main()嵌套，每个gtk_main()调用必须对应于一个gtk_main_quit()调用
+
+    char c = ((gchar *)data)[0];
+    num[digit++] = c;
+    if(c<'9' && c>'0') num[digit]=c-'0'
+
+
+
+python.h 
+sudo apt-get install python-dev  安装python-dev 实现python和c的通信
+python-dev 调用python api的c/c++文件
+
+
+
+gcc -g -Wall -o c a.c -L/usr/lib/python2.7/config -lpython2.7
+
+
+
+void signal_handler_clicked_equation(GtkButton *button,gpointer data)
+{
+//    if(digit>99)
+//    {
+//        gtk_entry_set_text(GTK_ENTRY(entry),"sry, the digit is illegal");
+//        gtk_editable_set_editable(GTK_EDITABLE(entry),FALSE);
+//    }
+//    gint i=0; // 数组下标
+//
+//    gint k=1;// 记小数
+//    gint tmp=1;// 暂记符号元素的下标
+//    gdouble ans=0.0; // 结果
+//    gdouble A=0.0,B=0.0;
+//    gint time=0; // 记使用'.'的位置
+//    gint calc_time=0;
+
+// debeg
+    gint j=0;
+    for(j=0; j<100; j++)
+    {
+        if(num[j]>=0&&num[j]<=9)
+            g_print("%d= %d(%c)\t",j+1,num[j],num[j]+48);
+        if(num[j]>9)
+            g_print("%d= %d(%c)\t",j+1,num[j],num[j]);
+        if((j+1)%7==0) g_print("\n");
+    }
+
+    g_print("\n");
+    g_print("\n");
+//
+
+
+    if(num[0]=='*'||num[0]=='/'||num[0]=='.'||num[0]=='?')
+        gtk_entry_set_text(GTK_ENTRY(entry),"Eorr input!");
+    else
+    {
+//        if(num[0]=='+') i++;
+//        if(num[0]=='-') A=-A;
+//        if(num[0]=='-')
+//        {
+//            A=-1*A;
+//            i++;
+//        }
+//        else if(num[0]=='+')
+//        {
+//            i++;
+//        }
+//        else
+//        {
+//            A=(gdouble)num[i];
+//            i++;
+//        }
+//        while(num[i]!='+'&&num[i]!='-'&&num[i]!='*'&&num[i]!='/'&&num[i]!='?')
+//        {
+//            if(num[i]=='.')
+//            {
+//                time=i;
+//            }
+//            if(num[time]=='.')
+//            {
+//                k=k*10;
+//                if(num[0]=='-') // 如果母num[0]保存'-'号，表示A是负值
+//                {
+//                    if(num[i+1]>10)  //如果是x.?的情况，A值不变
+//                        A=A;
+//                    else
+//                        A=A-(gdouble)num[i+1]/k; //如果是x.y的情况，A值变化
+//                }
+//                else
+//                {
+//                    if(num[i+1]>10)
+//                        A=A;
+//                    else
+//                        A=(gdouble)num[i+1]/k+A;
+//                }
+//            }
+//            else
+//            {
+//                if(num[0]=='-') // 如果母num[0]保存'-'号，表示A是负值
+//                    A=A*10.0-(gdouble)num[i];
+//                else
+//                    A=(gdouble)num[i]+A*10.0;
+//            }
+//            i++;
+//        }
+//        g_print("A= %f\n",A);
+//        ans=A;
+//
+//        while(digit>i)
+//        {
+//            time=0;
+//            B=0.0; // 每次B应该清零！
+//            tmp=i; // num[i]保存符号
+//            i++;  //g_print("num[i]=%d\n",num[i]);
+//            k=1;
+////g_print("num[tmp]=%c\n",num[tmp]);
+//            if(num[tmp+1]=='-')
+//            {
+//                B=-1*B;
+//                i++;
+//            }
+//            else if(num[tmp+1]=='+')
+//            {
+//                i++;
+//            }
+//            else
+//            {
+//                if(num[i]<=9&&num[i]>=0)
+//                {
+//                    B=(gdouble)num[i];
+//                    i++;
+//                }
+//                else continue;
+//            }
+//
+//            while(num[i]!='+'&&num[i]!='-'&&num[i]!='*'&&num[i]!='/'&&num[i]!='?')
+//            {
+//                if(num[i]=='.')
+//                {
+//                    time=i;
+//                }
+//                if(num[time]=='.')
+//                {
+//                    k=k*10;
+//                    if(num[tmp+1]=='-')
+//                    {
+//                        if(num[i+1]>10) //如果是x.?的情况，B值不变
+//                            B=B;
+//                        else
+//                            B=B-(gdouble)num[i+1]/k; //如果是x.y的情况，B值变化
+//                    }
+//                    else
+//                    {
+//                        if(num[i+1]>10) //如果是x.?的情况，B值不变
+//                            B=B;
+//                        else
+//                            B=B+(gdouble)num[1+i]/k; //如果是x.y的情况，B值变化
+//                    }
+//
+//                }
+//                else
+//                {
+//                    if(num[tmp+1]=='-')
+//                        B=B*10.0-(gdouble)num[i];
+//                    else
+//                        B=(gdouble)num[i]+B*10.0;
+//                }
+//                i++;
+//            }
+//            calc_time++;
+//            g_print("B= %f\n",B);
+//            g_print("the %d times computing  answer: %f%c %f= ",calc_time,ans,num[tmp],B);
+//
+//            switch(num[tmp])
+//            {
+//            case '+':
+//                ans=ans+B;
+//                break;
+//            case '-':
+//                ans=ans-B;
+//                break;
+//            case '*':
+//                ans=ans*B;
+//                break;
+//            case '/':
+//                ans=ans/B;
+//                break;
+//            }
+//
+//            g_print("%f\n",ans);
+//        }
+//g_print("digit=%d\n",digit);
+//g_print("i=%d\n",i);
+        g_print("ans= %f\n",ans);
+        gchar ans1[100];
+        g_snprintf(ans1,100,"%g",ans);
+        gtk_entry_set_text(GTK_ENTRY(entry),ans1);
+    }
+}
+
