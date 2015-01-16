@@ -1,0 +1,4 @@
+var button1:MyButton = new MyButton(100,20,0xFF0FFF);
+			addChild(button1);
+			button1.SetName("ddsafsa");
+			button1.addEventListener(MouseEvent.CLICK, onButtonClick£©
