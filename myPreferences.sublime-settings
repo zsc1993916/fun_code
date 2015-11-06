@@ -1,8 +1,14 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
-	"font_size": 11,
+	"font_size": 14.0,
+	"font_face": "Courier New",
+    "caret_style": "phase",
+	 "highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+	],
+	"theme": "Soda Dark 3.sublime-theme",
+	"update_check": false,
+	"word_wrap": "auto",
 	"highlight_line": true,
-	"caret_extra_top": 0,
-	"caret_extra_bottom": 0,
-	"caret_extra_width": 1,
+	"draw_white_space": "all"
 }
